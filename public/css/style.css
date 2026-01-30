@@ -1,0 +1,673 @@
+/* ========================================
+   1. ROOT & VARIABLES
+   ======================================== */
+:root {
+    --bg-page: #f9f4ef;
+    --navy: #020826;
+    --yellow: #FFD803;
+    --pink: #FF8BA7;
+    --blue: #AEE1E1;
+    --purple: #C3ACD0;
+    --white: #fffffe;
+    --stroke: #020826;
+    --mint: #B9F3E4;
+}
+
+/* ========================================
+   2. BASE LAYOUT & GLOBAL STYLES
+   ======================================== */
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    cursor: none; 
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--navy);
+    overflow-x: hidden;
+}
+
+.section-padding { 
+    padding: 100px 10%; 
+}
+
+.cursor-glow {
+    width: 30px; 
+    height: 30px; 
+    background: var(--yellow);
+    border-radius: 50%; 
+    position: fixed; 
+    pointer-events: none;
+    z-index: 10000; 
+    mix-blend-mode: difference;
+    border: 2px solid var(--stroke); 
+    transition: transform 0.1s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   3. APP LAYOUT: HEADER & NAV
+   ======================================== */
+header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 10%; 
+    background: var(--white);
+    border-bottom: 4px solid var(--stroke);
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px; 
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+nav ul { 
+    display: flex; 
+    font-size: 20px;
+    gap: 30px; 
+    list-style: none; 
+}
+
+nav ul li a { 
+    text-decoration: none; 
+    color: var(--navy); 
+    font-weight: 800; 
+    transition: 0.3s; 
+    padding: 5px 10px;
+}
+
+nav ul li a:hover { 
+    background: var(--blue); 
+    border: 2px solid var(--stroke); 
+    border-radius: 10px; 
+}
+
+/* ========================================
+   4. APP LAYOUT: FOOTER
+   ======================================== */
+footer {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 80px 10% 40px;
+    border-top: 8px solid var(--yellow);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+.footer-section h3 {
+    color: var(--yellow);
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.footer-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.footer-section ul li:hover {
+    color: var(--pink);
+    transform: translateX(5px);
+}
+
+/* ========================================
+   5. HOME COMPONENTS: GRIDS & HERO SHAPES
+   ======================================== */
+
+.hero-full {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--yellow); 
+    border-bottom: 5px solid var(--stroke); 
+    position: relative; 
+    overflow: hidden;
+    padding: 0 5%;
+}
+
+/* BASE STYLE: Berada di paling belakang */
+.squiggle {
+    position: absolute;
+    z-index: 0; /* Di belakang konten grid-2 */
+    pointer-events: none;
+    opacity: 0.6; /* Dibuat sedikit transparan agar tidak terlalu mencolok */
+    animation: squiggle-dance 10s ease-in-out infinite;
+}
+
+/* --- POJOK KANAN ATAS --- */
+.squiggle-1 {
+    width: 100px; height: 50px; border: 12px solid var(--pink);
+    border-radius: 50px 50px 0 0; border-bottom: none;
+    top: 5%; right: 10%; transform: rotate(25deg);
+}
+.squiggle-1::after {
+    content: ''; position: absolute; width: 100px; height: 50px;
+    border: 12px solid var(--pink); border-radius: 0 0 50px 50px;
+    border-top: none; top: 38px; left: -12px;
+}
+
+/* --- POJOK KIRI ATAS --- */
+.squiggle-2 {
+    width: 120px; height: 40px; border: 12px solid var(--blue);
+    border-radius: 80px 80px 0 0; border-bottom: none;
+    top: 8%; left: 5%; transform: rotate(-15deg);
+}
+.squiggle-2::after {
+    content: ''; position: absolute; width: 120px; height: 40px;
+    border: 12px solid var(--blue); border-radius: 0 0 80px 80px;
+    border-top: none; top: 28px; left: 80px;
+}
+
+/* --- TENGAH ATAS (Diatas Doodle) --- */
+.squiggle-3 {
+    width: 60px; height: 60px; border: 10px solid var(--purple);
+    border-radius: 50%; border-left-color: transparent;
+    top: 15%; right: 40%; transform: rotate(45deg);
+}
+
+/* --- POJOK KIRI BAWAH --- */
+.squiggle-4 {
+    width: 90px; height: 45px; border: 12px solid var(--mint);
+    border-radius: 40px 40px 0 0; border-bottom: none;
+    bottom: 10%; left: 8%; transform: rotate(10deg);
+}
+.squiggle-4::after {
+    content: ''; position: absolute; width: 90px; height: 45px;
+    border: 12px solid var(--mint); border-radius: 0 0 40px 40px;
+    border-top: none; top: 33px; left: -12px;
+}
+
+/* --- POJOK KANAN BAWAH --- */
+.squiggle-5 {
+    width: 35px; height: 35px; background: var(--mint);
+    border-radius: 50%; bottom: 15%; right: 5%;
+}
+
+/* --- TAMBAHAN BARU AGAR RAMAI --- */
+.squiggle-6 {
+    width: 80px; height: 30px; border-top: 10px solid var(--purple);
+    border-bottom: 10px solid var(--purple); border-radius: 50px;
+    bottom: 25%; left: 20%; transform: rotate(-30deg);
+}
+
+.squiggle-7 {
+    width: 50px; height: 50px; border: 8px solid var(--pink);
+    border-radius: 15px; top: 40%; left: 3%; transform: rotate(15deg);
+}
+
+.squiggle-8 {
+    width: 70px; height: 70px; border: 10px solid var(--blue);
+    border-radius: 50%; border-right-color: transparent;
+    top: 50%; right: 2%; transform: rotate(-10deg);
+}
+
+/* ANIMASI DANCE */
+@keyframes squiggle-dance {
+    0% { transform: scale(1) rotate(0deg) translate(0, 0); }
+    33% { transform: scale(1.05) rotate(4deg) translate(8px, -12px); }
+    66% { transform: scale(0.95) rotate(-3deg) translate(-8px, 8px); }
+    100% { transform: scale(1) rotate(0deg) translate(0, 0); }
+}
+
+/* --- Typografi Hero tetap Besar & Berani --- */
+.hero-title {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -4px;
+    margin-bottom: 25px;
+}
+
+.hero-title span {
+    display: inline-block;
+    background: var(--white); 
+    padding: 5px 25px; 
+    border: 5px solid var(--stroke); 
+    box-shadow: 12px 12px 0px var(--navy); /* Shadow dipertebal */
+    transform: rotate(-1deg); /* Sedikit miring agar dinamis */
+}
+
+.hero-subtitle {
+    font-size: 28px; /* Ukuran diperbesar */
+    font-weight: 700; 
+    margin: 40px 0; 
+    color: var(--navy);
+    max-width: 650px; /* Agar teks tidak memanjang satu baris */
+}
+
+.hero-image-box {
+    background: var(--white); 
+    height: 550px; /* Tinggi diperbesar */
+    width: 100%;
+    border: 5px solid var(--stroke); 
+    border-radius: 60px; 
+    box-shadow: 25px 25px 0px var(--navy); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transform: rotate(2deg); /* Arah putaran diubah agar kontras dengan teks */
+    transition: 0.3s ease;
+}
+
+.hero-image-box:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.hero-image-box h2 {
+    font-weight: 900; 
+    font-size: 48px; 
+    color: var(--pink);
+    text-align: center;
+}
+
+/* ========================================
+   6. HOME COMPONENTS: SECTIONS & CARDS
+   ======================================== */
+.section-white { background: var(--white); }
+.section-bg-page { background: var(--bg-page); border-top: 5px solid var(--stroke); }
+.section-blue { background: var(--blue); border-top: 5px solid var(--stroke); }
+.section-yellow { background: var(--yellow); border-top: 5px solid var(--stroke); }
+
+.grid-2 { 
+    display: grid; 
+    grid-template-columns: 1.2fr 1fr; /* Bagian teks sedikit lebih lebar */
+    gap: 80px; /* Jarak antar teks dan gambar diperlebar agar lega */
+    align-items: center;
+    max-width: 1400px; /* Batas maksimal lebar konten agar tidak terlalu ke pinggir */
+    width: 100%;
+    margin: 0 auto; /* Memastikan grid berada di tengah layar */
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; 
+    align-items: stretch;
+}
+
+.btn-main {
+    background: var(--yellow); 
+    color: var(--navy);
+    padding: 16px 32px; 
+    border-radius: 15px;
+    border: 3px solid var(--stroke); 
+    font-weight: 900;
+    text-decoration: none; 
+    box-shadow: 6px 6px 0px var(--stroke);
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+.btn-main:hover { 
+    transform: translate(-4px, -4px); 
+    box-shadow: 10px 10px 0px var(--pink); 
+}
+
+.stat-card {
+    background: var(--white); 
+    border: 4px solid var(--stroke);
+    padding: 40px 20px; 
+    border-radius: 30px; 
+    text-align: center;
+    transition: 0.4s ease; 
+    position: relative;
+}
+
+.stat-card:hover { 
+    transform: scale(1.05) rotate(2deg); 
+    background: var(--mint); 
+}
+
+.stat-card h3 { 
+    font-size: 24px; 
+    margin-bottom: 10px; 
+}
+
+.progress-bar {
+    width: 100%; 
+    height: 28px; 
+    background: var(--white); 
+    border-radius: 50px; 
+    border: 4px solid var(--stroke);
+    overflow: hidden; 
+    margin: 20px 0; 
+    box-shadow: 4px 4px 0px var(--stroke);
+}
+
+.progress-fill {
+    width: 0%; 
+    height: 100%; 
+    background: var(--pink);
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   GAYA GOOGLE LEARNING PATH (GRID 3)
+   ======================================== */
+
+.section-light-path {
+    background-color: var(--bg-page); /* Menggunakan warna krem bersih BrightSkill */
+    padding: 100px 10%;
+    border-top: 5px solid var(--stroke);
+}
+
+.class-card {
+    background-color: var(--white); /* Putih bersih */
+    border: 3px solid var(--stroke); /* Border tegas agar terlihat niat */
+    border-radius: 40px; 
+    padding: 40px;
+    text-align: left;
+    position: relative;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 420px;
+    box-shadow: 10px 10px 0px var(--navy); /* Shadow tegas Neo-Brutalism */
+}
+
+.class-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 15px 15px 0px var(--pink); /* Shadow berubah warna saat hover */
+}
+
+.path-badge {
+    background: var(--bg-page);
+    color: var(--navy);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    margin-bottom: 25px;
+    border: 2px solid var(--stroke);
+}
+
+.class-card h4 {
+    color: var(--navy);
+    font-size: 32px; 
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.class-card p {
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+/* Tombol Lingkaran di Pojok Kanan Bawah */
+.btn-circle {
+    width: 65px;
+    height: 65px;
+    background-color: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    align-self: flex-end;
+    border: 3px solid var(--stroke);
+    box-shadow: 4px 4px 0px var(--stroke);
+    transition: 0.2s;
+}
+
+.btn-circle:hover {
+    background-color: var(--yellow);
+    transform: scale(1.1) rotate(15deg);
+}
+
+.btn-circle span {
+    font-size: 28px;
+    color: var(--navy);
+    font-weight: 900;
+}
+
+/* ========================================
+   GOOGLE SKILLS INTERACTIVE ACCORDION (GRID 4)
+   ======================================== */
+.section-full-layout {
+    padding: 100px 10%;
+    background: var(--white);
+    text-align: center; /* KEMBALI KE RATA TENGAH */
+}
+
+.main-heading-google {
+    font-size: 64px; 
+    font-weight: 900;
+    line-height: 1.3; /* Jarak antar baris lebih lega */
+    margin-bottom: 25px;
+    color: var(--navy);
+    max-width: 1000px; /* Diperlebar agar muat menyamping */
+    margin-left: auto;
+    margin-right: auto;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+/* Highlight BrightSkill tetap di samping teks 'BARENG' */
+.main-heading-google span {
+    color: var(--pink);
+    background: var(--white);
+    padding: 2px 15px;
+    border: 4px solid var(--stroke);
+    box-shadow: 6px 6px 0px var(--navy);
+    display: inline-block;
+    transform: rotate(-1deg);
+    margin-left: 10px; /* Jarak dengan kata sebelumnya */
+    vertical-align: middle;
+}
+
+.sub-heading-google {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 80px;
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Wrapper Grid tetap di tengah */
+.skills-wrapper-clean {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left; /* Teks di dalam grid tetap rata kiri agar rapi */
+}
+
+.visual-anchor-free {
+    display: flex;
+    align-items: center;
+    /* Ubah dari center ke flex-start agar teks mepet ke kiri */
+    justify-content: flex-start; 
+    position: relative;
+    /* Beri padding kiri agar tidak terlalu nempel ke ujung layar */
+    padding-left: 50px; 
+    /* Beri lebar pasti agar tidak menekan kolom sebelah kanan */
+    width: 100%; 
+}
+
+#dynamic-visual {
+    font-size: 110px;
+    font-weight: 900;
+    color: var(--yellow);
+    text-shadow: 4px 4px 0px var(--stroke);
+    letter-spacing: -5px;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Paksa teks rata kiri di dalam flex container-nya */
+    text-align: left; 
+}
+
+/* Sisi Kanan: Accordion Google Style */
+.info-list-google {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-item {
+    border-left: 5px solid #e0e0e0;
+    padding: 15px 40px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.info-item.active {
+    border-left-color: var(--pink);
+    background: linear-gradient(to right, rgba(255, 139, 167, 0.08), transparent);
+}
+
+.info-item h3 {
+    font-size: 32px; /* Ukuran h3 ala Google */
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0;
+}
+
+.info-item.active h3 {
+    color: var(--pink);
+}
+
+.info-text {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    font-size: 18px;
+    color: #555;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.info-item.active .info-text {
+    max-height: 200px;
+    margin-top: 15px;
+}
+
+/* ========================================
+   7. LEARNING PATH UI (ALUR BELAJAR)
+   ======================================== */
+
+.path-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0; /* Gap dinonaktifkan karena kita pakai garis penghubung */
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.path-step {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Garis Penghubung Putus-putus */
+.path-line {
+    width: 80px;
+    height: 4px;
+    border-top: 5px dotted var(--stroke);
+    margin: 0 10px;
+    position: relative;
+}
+
+/* Panah kecil di ujung garis */
+.path-line::after {
+    content: '▶';
+    position: absolute;
+    right: -10px;
+    top: -12px;
+    color: var(--stroke);
+    font-size: 18px;
+}
+
+.step-card {
+    width: 260px;
+    background: var(--white);
+    border: 4px solid var(--stroke);
+    padding: 30px 20px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 8px 8px 0px var(--stroke);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+.step-card:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 12px 12px 0px var(--pink);
+}
+
+.step-number {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    line-height: 35px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.step-card h3 {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.step-card p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
