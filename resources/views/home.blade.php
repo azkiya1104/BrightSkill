@@ -91,7 +91,7 @@
                     <span>⠿</span> Learning Path
                 </div>
                 <h4>Logika Dasar <br> Programming</h4>
-                <p>Pelajari fondasi utama dalam dunia IT. Dari variabel hingga struktur kontrol, dirancang khusus untuk Kia yang ingin mulai ngoding dengan seru!</p>
+                <p>Pelajari fondasi utama dalam dunia IT. Dari variabel hingga struktur kontrol, dirancang khusus untuk kamu yang ingin mulai ngoding dengan seru!</p>
             </div>
             <a href="{{ url('/classes') }}" class="btn-circle">
                 <span>→</span>
@@ -117,7 +117,7 @@
                     <span>⠿</span> Learning Path
                 </div>
                 <h4>Data Safety & <br> Digital Literacy</h4>
-                <p>Pahami cara kerja internet secara mendalam. Belajar cara melindungi data pribadi Kia di era digital supaya tetap aman dan tetap cerdas.</p>
+                <p>Pahami cara kerja internet secara mendalam. Belajar cara melindungi data pribadi kamu di era digital supaya tetap aman dan tetap cerdas.</p>
             </div>
             <a href="{{ url('/classes') }}" class="btn-circle" style="background: var(--yellow);">
                 <span>→</span>
@@ -126,72 +126,125 @@
     </div>
 </section>
 
-<section class="section-padding reveal-on-scroll section-white" style="border-top: 5px solid var(--stroke);">
-    <h2 style="font-size: 50px; font-weight: 900; margin-bottom: 60px; text-align: center;">Gampang Banget! 🛠️</h2>
+<section class="section-clean-path reveal-on-scroll">
+    <h2 style="font-size: 48px; font-weight: 900; margin-bottom: 20px; text-align: center; color: var(--navy);">Langkah Belajarmu</h2>
+    <p style="text-align: center; color: #666; font-weight: 600; margin-bottom: 70px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Ikuti alur terstruktur kami untuk membantu kamu menguasai keahlian digital masa depan secara efektif.
+    </p>
     
     <div class="path-container">
         <div class="path-step">
-            <div class="step-card" style="background: var(--blue);">
-                <span class="step-number">1</span>
-                <h3>Daftar Akun</h3>
-                <p>Bikin akun kilat cuma semenit!</p>
+            <div class="step-card-clean">
+                <span class="step-badge">Langkah 01</span>
+                <h3>Registrasi Akun Siswa</h3>
+                <p>Mulai dengan mendaftarkan akun untuk mengakses seluruh ekosistem pembelajaran kami.</p>
             </div>
             <div class="path-line"></div>
         </div>
 
         <div class="path-step">
-            <div class="step-card" style="background: var(--yellow);">
-                <span class="step-number">2</span>
-                <h3>Akses Materi</h3>
-                <p>Pilih kelas favoritmu & mulai belajar.</p>
+            <div class="step-card-clean">
+                <span class="step-badge">Langkah 02</span>
+                <h3>Eksplorasi Kurikulum</h3>
+                <p>Pilih jalur pembelajaran yang sesuai dengan minat dan tujuan karir digital Kia.</p>
             </div>
             <div class="path-line"></div>
         </div>
 
         <div class="path-step">
-            <div class="step-card" style="background: var(--mint);">
-                <span class="step-number">3</span>
-                <h3>Pantau Progres</h3>
-                <div class="progress-bar" style="height: 15px; margin: 10px 0;"><div class="progress-fill" style="width: 70%;"></div></div>
-                <p>Cek statistik belajarmu di Dashboard.</p>
+            <div class="step-card-clean">
+                <span class="step-badge">Langkah 03</span>
+                <h3>Monitoring Progres</h3>
+                <p>Gunakan Dashboard interaktif untuk memantau pencapaian dan statistik modul Kia.</p>
             </div>
             <div class="path-line"></div>
         </div>
 
         <div class="path-step">
-            <div class="step-card" style="background: var(--pink); color: white;">
-                <span class="step-number" style="background: white; color: var(--pink);">4</span>
-                <h3 style="color: white;">Selesaikan Kelas</h3>
-                <p style="color: rgba(255,255,255,0.9);">Klaim Badge & jadi Digital Hero! 🎉</p>
+            <div class="step-card-clean">
+                <span class="step-badge">Langkah 04</span>
+                <h3>Sertifikasi Akhir</h3>
+                <p>Selesaikan evaluasi akhir untuk mendapatkan kredensial resmi dari BrightSkill.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section-padding reveal-on-scroll dashboard-preview section-bg-page">
+<section class="section-padding reveal-on-scroll dashboard-preview section-bg-page" style="border-top: 5px solid var(--stroke);">
     <div class="grid-2">
-        <div style="background: var(--white); padding: 50px; border: 5px solid var(--stroke); border-radius: 40px; box-shadow: 15px 15px 0px var(--navy);">
-            <h3 style="font-weight: 900; font-size: 32px;">Your Energy Level ⚡</h3>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <p style="font-weight: 800; font-size: 20px;">Rank: <span style="color: var(--pink);">Superstar Learner ⭐</span></p>
+        <div class="laptop-wrapper">
+            <div class="laptop-frame">
+                <div class="laptop-screen">
+                    <div style="background: var(--white); padding: 30px; border: 4px solid var(--stroke); border-radius: 25px; box-shadow: 8px 8px 0px var(--navy); width: 90%;">
+                        <h3 style="font-weight: 900; font-size: 24px; margin-bottom: 15px;">Your Energy Level</h3>
+                        <div class="progress-bar" style="height: 20px;"><div class="progress-fill" style="width: 75%;"></div></div>
+                        <p style="font-weight: 800; font-size: 16px; margin-top: 10px;">Rank: <span style="color: var(--pink);">Superstar Learner</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="laptop-base"></div>
         </div>
-        <div>
-            <h2 style="font-size: 50px; font-weight: 900;">Dashboard <br> Keren Menantimu!</h2>
-            <p style="font-size: 18px; margin-top: 20px;">Pantau progres belajarmu dengan tampilan yang interaktif dan penuh reward.</p>
+
+        <div style="padding-left: 20px;">
+            <h2 style="font-size: 55px; font-weight: 900; line-height: 1.1; color: var(--navy);">
+                Dashboard <br> <span style="color: var(--pink); text-shadow: 3px 3px 0px var(--stroke);">Keren</span> Menantimu!
+            </h2>
+            <p style="font-size: 20px; margin-top: 25px; font-weight: 600; color: #555; line-height: 1.6;">
+                Pantau progres belajarmu dengan tampilan yang interaktif, penuh reward, dan motivasi harian untuk kamu.
+            </p>
+            <div style="margin-top: 35px;">
+                <a href="#" class="btn-main">Coba Demo Dashboard</a>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section-padding reveal-on-scroll section-blue" style="text-align: center;">
-    <div style="background: var(--white); padding: 40px; border: 4px solid var(--stroke); border-radius: 30px; box-shadow: 10px 10px 0px var(--navy); max-width: 800px; margin: 0 auto;">
-        <p style="font-size: 24px; font-style: italic; font-weight: 700;">"Belajarnya seru banget & dashboard-nya gampang dipahami buat pemula!"</p>
-        <p style="margin-top: 20px; font-weight: 900;">- Kia, Mahasiswa TI 👩‍💻</p>
+<section class="section-padding reveal-on-scroll section-white" style="border-top: 5px solid var(--stroke);">
+    <div class="testimonial-video-grid">
+        
+        <div class="testimonial-content">
+            <h2 class="testimonial-quote">
+                "BrightSkill ngebantu aku buat <span>level up</span> skill digital dengan cara yang paling seru!"
+            </h2>
+            <div class="testimonial-author">
+                <p>— Charles Leclerc</p>
+                <p style="font-size: 16px; font-weight: 600; opacity: 0.7;">Fullstack Developer Enthusiast</p>
+            </div>
+            <div style="margin-top: 40px;">
+                <a href="#" class="btn-main" style="background: var(--blue);">Lihat Cerita Lainnya</a>
+            </div>
+        </div>
+
+        <div class="video-container-mockup" style="position: relative; cursor: pointer;" onclick="playStopVideo()">
+            <div id="playBtnCenter" class="play-btn-overlay">▶</div>
+            
+            <video id="vlogVideo" width="100%" playsinline webkit-playsinline>
+                <source src="{{ asset('video/wawancara.mp4') }}" type="video/mp4">
+                Browser tidak mendukung video.
+            </video>
+        </div>
+
     </div>
 </section>
 
-<section class="section-padding reveal-on-scroll section-yellow" style="text-align: center;">
-    <h2 style="font-size: 55px; font-weight: 900; margin-bottom: 30px;">Siap Jadi Digital Hero? 🚀</h2>
-    <a href="{{ url('/register') }}" class="btn-main" style="transform: scale(1.3); margin-top: 20px;">Join Class Sekarang!</a>
+<section class="section-hero-cta reveal-on-scroll">
+    <div class="cta-decoration" style="top: 10%; left: 5%;">★</div>
+    <div class="cta-decoration" style="bottom: 10%; right: 5%; color: var(--pink);">✦</div>
+    <div class="cta-decoration" style="top: 40%; left: 15%; font-size: 150px;">〰</div>
+
+    <h2 class="cta-title">
+        Siap Jadi <br> <span>Digital Hero?</span>
+    </h2>
+    
+    <div style="margin-top: 50px;">
+        <a href="{{ url('/register') }}" class="btn-cta-hero">
+            Join Class Sekarang!
+        </a>
+    </div>
+
+    <p style="margin-top: 30px; font-weight: 800; color: var(--navy); opacity: 0.7; font-size: 18px;">
+        Bergabunglah dengan ribuan siswa lainnya di BrightSkill.
+    </p>
 </section>
 
 @endsection

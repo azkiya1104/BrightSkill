@@ -104,35 +104,70 @@ footer {
     border-top: 8px solid var(--yellow);
 }
 
+.footer-section .footer-brand {
+    font-size: 42px; /* Ukuran dibuat jauh lebih besar */
+    font-weight: 950;
+    color: var(--yellow); /* Warna pink agar kontras dengan navy */
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin-bottom: 15px;
+    display: inline-block;
+    /* Efek bayangan teks agar terlihat 3D dan kuat */
+    text-shadow: 4px 4px 0px var(--stroke);
+    transition: 0.3s ease;
+}
+
+.footer-section .footer-brand:hover {
+    transform: skewX(-5deg);
+    color: var(--pink);
+}
+
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr; 
+    gap: 40px;
 }
 
 .footer-section h3 {
     color: var(--yellow);
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 900;
     margin-bottom: 25px;
     text-transform: uppercase;
 }
 
-.footer-section p {
-    font-size: 16px;
-    line-height: 1.8;
-    opacity: 0.9;
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.footer-section ul li {
-    margin-bottom: 12px;
-    font-weight: 700;
-    transition: 0.3s;
+.social-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--white);
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 22px; /* Ukuran ikon FontAwesome */
+    text-decoration: none;
+    border: 3px solid var(--stroke); /* Pakai var stroke biar konsisten */
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.footer-section ul li:hover {
-    color: var(--pink);
-    transform: translateX(5px);
+.social-icon:hover {
+    background: var(--pink);
+    color: var(--white);
+    transform: translateY(-5px) rotate(8deg);
+    box-shadow: 4px 4px 0px var(--yellow);
+    border-color: var(--navy);
+}
+
+/* Memastikan ikon pas di tengah */
+.social-icon i {
+    line-height: 0;
 }
 
 /* ========================================
@@ -594,80 +629,694 @@ footer {
    7. LEARNING PATH UI (ALUR BELAJAR)
    ======================================== */
 
+.section-clean-path {
+    background-color: var(--white);
+    padding: 100px 5%;
+    border-top: 5px solid var(--stroke);
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+/* Memastikan container menggunakan Flex, bukan Grid dari class lain */
 .path-container {
-    display: flex;
+    display: flex !important; /* Paksa tetap flex */
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    gap: 0; /* Gap dinonaktifkan karena kita pakai garis penghubung */
-    flex-wrap: wrap;
+    align-items: flex-start; /* Sejajarkan kartu dari atas */
+    flex-wrap: nowrap; /* Jangan biarkan kartu turun ke bawah di desktop */
     max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 0;
+    margin: 50px auto 0;
+    gap: 0; /* Jarak dikontrol oleh path-line */
 }
 
 .path-step {
     display: flex;
     align-items: center;
-    position: relative;
+    flex-shrink: 0; /* Mencegah kartu gepeng/mengecil */
 }
 
-/* Garis Penghubung Putus-putus */
+/* Garis Penghubung Tetap Horizontal */
 .path-line {
-    width: 80px;
-    height: 4px;
-    border-top: 5px dotted var(--stroke);
+    width: 50px;
+    height: 2px;
+    border-top: 3px dashed #ddd;
     margin: 0 10px;
-    position: relative;
+    flex-shrink: 0;
 }
 
-/* Panah kecil di ujung garis */
-.path-line::after {
-    content: '▶';
-    position: absolute;
-    right: -10px;
-    top: -12px;
-    color: var(--stroke);
-    font-size: 18px;
-}
-
-.step-card {
-    width: 260px;
+.step-card-clean {
+    width: 260px; /* Ukuran tetap agar konsisten */
     background: var(--white);
-    border: 4px solid var(--stroke);
+    border: 2px solid #eee;
     padding: 30px 20px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 8px 8px 0px var(--stroke);
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 30px;
+    text-align: left;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    /* Reset properti grid jika terbawa dari class lain */
+    display: block !important; 
+}
+
+/* Responsif: Jika layar kekecilan baru boleh turun ke bawah */
+@media (max-width: 1100px) {
+    .path-container {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .path-line {
+        display: none; /* Hilangkan garis di layar kecil agar rapi */
+    }
+}
+
+.step-card-clean:hover {
+    border-color: var(--pink);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 139, 167, 0.1);
+}
+
+.step-badge {
+    color: var(--pink);
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.step-card-clean h3 {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    color: var(--navy);
+    line-height: 1.2;
+}
+
+.step-card-clean p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* ========================================
+   8. LAPTOP MOCKUP PREVIEW (DASHBOARD/ GRID 2)
+   ======================================== */
+
+.laptop-frame {
+    position: relative;
+    padding: 20px;
+    background: #e0e0e0; /* Warna body laptop */
+    border: 5px solid var(--stroke);
+    border-radius: 20px 20px 5px 5px;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
     z-index: 2;
 }
 
-.step-card:hover {
-    transform: translateY(-10px) rotate(2deg);
-    box-shadow: 12px 12px 0px var(--pink);
+/* Bagian Layar Dalam */
+.laptop-screen {
+    background: var(--bg-page);
+    border: 4px solid var(--stroke);
+    border-radius: 10px;
+    padding: 40px 20px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.step-number {
-    display: inline-block;
-    background: var(--navy);
-    color: var(--white);
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    line-height: 35px;
+/* Bagian Keyboard / Base Laptop */
+.laptop-base {
+    height: 15px;
+    background: #bdbdbd;
+    border: 5px solid var(--stroke);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    width: 105%;
+    margin-left: -2.5%;
+    position: relative;
+}
+
+/* Tambahan dekorasi squiggles kecil di sekitar laptop agar ceria */
+.laptop-wrapper {
+    position: relative;
+    padding: 40px;
+}
+
+/* ========================================
+   9. TESTIMONIAL & VIDEO SECTION (GOOGLE STYLE)
+   ======================================== */
+
+.testimonial-video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Sisi video sedikit lebih lebar */
+    gap: 60px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Container Teks Testimoni */
+.testimonial-content {
+    padding-right: 20px;
+}
+
+.testimonial-quote {
+    font-size: 42px;
     font-weight: 900;
-    margin-bottom: 15px;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 30px;
 }
 
-.step-card h3 {
+.testimonial-quote span {
+    color: var(--pink);
+}
+
+.testimonial-author {
     font-size: 20px;
+    font-weight: 800;
+    color: #555;
+}
+
+/* Container Video Mockup */
+.video-container-mockup {
+    position: relative;
+    border: 5px solid var(--stroke);
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 20px 20px 0px var(--navy);
+    background: #000;
+    aspect-ratio: 16 / 9;
+}
+
+.video-container-mockup video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+}
+
+.play-btn-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: var(--white);
+    border: 4px solid var(--stroke);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Biar kliknya tembus ke container */
+}
+
+/* ========================================
+   10. FINAL CTA SECTION (DIGITAL HERO)
+   ======================================== */
+
+.section-hero-cta {
+    background-color: var(--yellow);
+    padding: 120px 10%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid var(--stroke);
+    border-bottom: 5px solid var(--stroke);
+}
+
+/* Judul Hero tanpa Emotikon */
+.cta-title {
+    font-size: 80px;
+    font-weight: 950;
+    line-height: 1;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Efek teks transparan dengan outline */
+.cta-title span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--stroke);
+    margin-top: 10px;
+}
+
+/* Dekorasi Elemen Melayang (Bentuk Squiggle/Coretan) */
+.cta-decoration {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0.2;
+    z-index: 1;
+    user-select: none;
+    animation: cta-float 6s ease-in-out infinite;
+}
+
+@keyframes cta-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Tombol Join Class yang Lebih Besar & Mantap */
+.btn-cta-hero {
+    background: var(--pink);
+    color: var(--white);
+    padding: 25px 60px;
+    font-size: 28px;
     font-weight: 900;
-    margin-bottom: 10px;
+    border: 5px solid var(--stroke);
+    border-radius: 20px;
+    box-shadow: 12px 12px 0px var(--navy);
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+}
+
+.btn-cta-hero:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 18px 18px 0px var(--stroke);
+    background: var(--blue);
+}
+
+/* ========================================
+   11. CLASSES PAGE: CLEAN & INTERACTIVE
+   ======================================== */
+
+.classes-banner {
+    padding: 100px 10% 50px;
+    background: var(--bg-page);
+    text-align: center;
+}
+
+/* Judul Utama dengan Gaya Gambar ke-2 */
+.classes-banner h1 {
+    font-size: 68px; /* Ukuran besar yang mantap */
+    font-weight: 950;
+    line-height: 1.1;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Aksen Highlight Kotak (Vibe Gambar ke-2 & Jago Skill Digital) */
+.classes-banner h1 span {
+    color: var(--pink);
+    background: var(--white);
+    padding: 5px 20px;
+    border: 5px solid var(--stroke); /* Border tebal Gambar 5 & 2 */
+    box-shadow: 8px 8px 0px var(--navy); /* Shadow tegas */
+    display: inline-block;
+    transform: rotate(-2deg); /* Memberi kesan playful */
+    margin-top: 10px;
+}
+
+.sub-heading-google {
+    font-size: 20px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* Filter Buttons */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.filter-btn {
+    padding: 12px 25px;
+    border: 3px solid var(--stroke);
+    border-radius: 15px;
+    background: var(--white);
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--pink);
+    color: var(--white);
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px var(--navy);
+}
+
+/* Class Cards Grid */
+
+.classes-grid {
+    display: grid;
+    /* KUNCI: Selalu 3 kolom kesamping untuk layar desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+    padding: 20px 10% 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.class-card-clean {
+    background: var(--white);
+    border: 3px solid var(--stroke);
+    border-radius: 40px;
+    /* Mengurangi padding agar isi lebih rapat */
+    padding: 25px; 
+    position: relative;
+    box-shadow: 8px 8px 0px var(--navy);
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* KUNCI: Kecilkan nilai min-height (sebelumnya 380px) */
+    min-height: 280px; 
+}
+
+.class-card-clean h3 {
+    font-size: 22px; /* Sedikit dikecilkan agar seimbang */
+    font-weight: 950;
+    line-height: 1.2;
+    margin-bottom: 10px; /* Kurangi jarak bawah judul */
     color: var(--navy);
 }
 
-.step-card p {
+.class-card-clean p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+    font-weight: 600;
+    /* Kurangi margin bawah deskripsi */
+    margin-bottom: 15px; 
+}
+
+/* Badge Path dibuat lebih rapat */
+.badge-path {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border: 2px solid var(--stroke);
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 15px; /* Kurangi jarak bawah badge */
+    width: fit-content;
+    background: var(--white);
+}
+
+/* Ukuran tombol panah dikecilkan sedikit agar proporsional */
+.btn-detail-circle {
+    width: 45px;
+    height: 45px;
+    background: var(--mint);
+    border: 3px solid var(--stroke);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: auto;
+    align-self: flex-end;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* Responsif untuk tablet/HP */
+@media (max-width: 1024px) {
+    .classes-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .classes-grid { grid-template-columns: 1fr; }
+}
+
+/* Modal System */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 25, 47, 0.8);
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 700px;
+    border: 5px solid var(--stroke);
+    border-radius: 40px;
+    padding: 50px;
+    position: relative;
+    transform: scale(0.8);
+    transition: 0.3s;
+}
+
+.modal-overlay.active { display: flex; }
+.modal-overlay.active .modal-content { transform: scale(1); }
+
+.close-modal {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 40px;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+/* ========================================
+   12. GALLERY: EVENT GRID (2 COLUMNS)
+   ======================================== */
+
+.event-banner-yellow {
+    background-color: var(--yellow) !important; /* Ganti tosca jadi kuning */
+    padding: 100px 10% 60px;
+    text-align: center;
+    border-bottom: 5px solid var(--stroke);
+}
+
+.event-banner-yellow h1 {
+    font-size: 85px; /* Perbesar judul banner */
+    font-weight: 950;
+    line-height: 1;
+    color: var(--navy);
+}
+
+.event-grid-container {
+    display: grid;
+    /* UPDATE: Kunci 3 kolom kesamping sesuai permintaan Kia */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+    padding: 40px 10% 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.event-card-compact {
+    background: var(--white);
+    border: 3px solid var(--stroke);
+    border-radius: 30px; /* Sedikit lebih kecil agar rapi dalam 3 kolom */
+    overflow: hidden;
+    box-shadow: 8px 8px 0px var(--navy);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card-compact:hover {
+    transform: translateY(-8px);
+    box-shadow: 12px 12px 0px var(--pink);
+}
+
+/* PERBAIKAN POSTER: Menggunakan aspect ratio agar tidak terpotong */
+.event-thumbnail {
+    width: 100%;
+    /* Rasio 3:4 sangat pas untuk poster portrait seperti di Gambar 14 */
+    aspect-ratio: 3 / 4; 
+    position: relative;
+    border-bottom: 3px solid var(--stroke);
+    background: #f9f9f9;
+}
+
+.event-thumbnail img {
+    width: 100%;
+    height: 100%;
+    /* 'cover' dengan aspect-ratio 3:4 akan memperlihatkan poster secara maksimal */
+    object-fit: cover;
+    object-position: top;
+}
+
+.event-info-box {
+    padding: 20px; /* Padding lebih ramping untuk 3 kolom */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-info-box h3 {
+    font-size: 22px; /* Disesuaikan ukurannya agar tidak meluber */
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--navy);
+    line-height: 1.2;
+}
+
+.event-info-box p {
     font-size: 14px;
     font-weight: 600;
     color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Badge Tanggal yang lebih compact */
+.date-badge-yellow {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--yellow);
+    border: 2px solid var(--stroke);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 900;
+    font-size: 12px;
+    z-index: 2;
+}
+
+/* Responsif: 2 kolom di tablet, 1 kolom di HP */
+@media (max-width: 1024px) {
+    .event-grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .event-grid-container { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   14. LEARNING DASHBOARD (FULL UPDATE)
+   ======================================== */
+
+.dashboard-container {
+    padding: 60px 10% 100px;
+    background: #fdfbf7;
+    min-height: 100vh;
+}
+
+/* Header & Stat Cards */
+.dashboard-header-box {
+    background: white;
+    border: 4px solid var(--stroke);
+    border-radius: 40px;
+    padding: 40px;
+    box-shadow: 10px 10px 0 var(--navy);
+    margin-bottom: 40px;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.stat-card-small {
+    background: white;
+    border: 3px solid var(--stroke);
+    padding: 25px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 6px 6px 0px var(--stroke);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 950;
+    color: var(--navy);
+}
+
+/* Class Cards */
+.dashboard-class-card {
+    border: 4px solid var(--stroke);
+    border-radius: 40px;
+    padding: 30px;
+    background: white;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 8px 8px 0 var(--navy);
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.progress-container-bg {
+    background: #eee;
+    height: 25px;
+    border: 3px solid var(--stroke);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill-bar {
+    width: 0%; 
+    height: 100%; 
+    background: var(--pink); 
+    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* MODAL SYSTEM (LOGIKA UTAMA) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(8px);
+    display: none; /* Awalnya sembunyi */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-overlay.active {
+    display: flex; /* Muncul saat JS panggil .active */
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border: 5px solid var(--stroke);
+    border-radius: 40px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 15px 15px 0px var(--navy);
+}
+
+.materi-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 2px solid var(--stroke);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }

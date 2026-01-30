@@ -31,3 +31,7 @@ Route::get('/about', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/coming-soon', function () {
+    return view('coming_soon');
+})->name('coming.soon');
