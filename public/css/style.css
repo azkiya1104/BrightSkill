@@ -302,8 +302,7 @@ footer {
 }
 
 .hero-image-box {
-    background: var(--white); 
-    height: 550px; /* Tinggi diperbesar */
+    height: 550px;
     width: 100%;
     border: 5px solid var(--stroke); 
     border-radius: 60px; 
@@ -311,21 +310,24 @@ footer {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    transform: rotate(2deg); /* Arah putaran diubah agar kontras dengan teks */
+    transform: rotate(2deg); 
     transition: 0.3s ease;
+    position: relative;
+    background: #fff;
 }
 
 .hero-image-box:hover {
     transform: rotate(0deg) scale(1.02);
 }
 
-.hero-image-box h2 {
-    font-weight: 900; 
-    font-size: 48px; 
-    color: var(--pink);
-    text-align: center;
+/* Efek tambahan agar foto tidak terlihat flat */
+.hero-image-box img {
+    transition: 0.5s ease;
 }
 
+.hero-image-box:hover img {
+    filter: saturate(1.2); /* Foto jadi lebih cerah saat dihover */
+}
 /* ========================================
    6. HOME COMPONENTS: SECTIONS & CARDS
    ======================================== */

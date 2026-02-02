@@ -326,3 +326,30 @@ function validateForm(event) {
         setTimeout(() => card.classList.add('shake'), 10);
     }
 }
+
+//BUTTON GALLERY
+// Fungsi untuk membuka modal event dengan data dinamis
+function openEventModal(title, desc, location, time) {
+    const modal = document.getElementById('eventModal');
+    
+    // Isi konten modal
+    document.getElementById('modalEventTitle').innerText = title;
+    document.getElementById('modalEventDesc').innerText = desc;
+    document.getElementById('modalEventLoc').innerText = location;
+    document.getElementById('modalEventTime').innerText = time;
+    
+    // Tampilkan modal
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Stop scroll halaman belakang
+    }
+}
+
+// Fungsi untuk menutup modal event
+function closeEventModal() {
+    const modal = document.getElementById('eventModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Aktifkan scroll kembali
+    }
+}

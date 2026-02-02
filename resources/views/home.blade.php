@@ -27,9 +27,14 @@
             </div>
         </div>
 
-        <div class="hero-image-box">
-            <h2>[ HAPPY DOODLE ]</h2>
-        </div>
+        <div class="hero-image-box" style="padding: 0; overflow: hidden; background: var(--navy);">
+    <img src="{{ asset('images/hero.jpg') }}" alt="Learning Together" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    
+    <div style="position: absolute; bottom: 20px; left: 20px; background: white; border: 3px solid var(--stroke); padding: 10px 20px; border-radius: 15px; box-shadow: 5px 5px 0px var(--pink);">
+        <h3 style="margin: 0; font-weight: 900; font-size: 20px; color: var(--navy);">#BrightSkillJourney</h3>
+    </div>
+</div>
     </div>
 </section>
 
