@@ -28,33 +28,24 @@
 
 <div class="db-wrapper">
     <div class="db-header">
-        <h1 style="font-size: 45px; font-weight: 950; margin-bottom: 5px;">My Learning Dashboard</h1>
-        <p style="font-weight: 700;">Selamat belajar kembali, <span style="color: #FF8BA7;">Kia</p>
+    <h1 style="font-size: 45px; font-weight: 950; margin-bottom: 5px;">My Learning Dashboard</h1>
+    <p style="font-weight: 700;">Selamat belajar kembali, <span id="userName" style="color: #FF8BA7;">Kia</span>! </p>
     </div>
 
     <div class="db-stats">
-        <div class="stat-box"><h4>Total</h4><div class="stat-val">3</div></div>
-        <div class="stat-box"><h4>Selesai</h4><div class="stat-val" id="finishedCount">0</div></div>
-        <div class="stat-box"><h4>Ongoing</h4><div class="stat-val">3</div></div>
-        <div class="stat-box"><h4>Progress</h4><div class="stat-val" id="totalProgress">0%</div></div>
-    </div>
+    <div class="stat-box"><h4>Total</h4><div class="stat-val">6</div></div>
+    
+    <div class="stat-box"><h4>Selesai</h4><div class="stat-val" id="finishedCount">0</div></div>
+    
+    <div class="stat-box"><h4>Ongoing</h4><div class="stat-val" id="ongoingCount">6</div></div>
+    
+    <div class="stat-box"><h4>Progress</h4><div class="stat-val" id="totalProgress">0%</div></div>
+</div>  
 
     <div class="class-list-container">
-        <h2 style="font-weight: 950; margin-bottom: 10px;">Kelas Saya</h2>
-        
-        <div class="class-card-db">
-    <div>
-        <h3 style="font-weight: 900; font-size: 22px;">Logika Dasar</h3>
-        <span id="statusText-1" style="font-weight: 800; color: #888; font-size: 14px;">ONGOING</span>
-    </div>
-    
-    <div class="bar-bg" style="background: #eee; height: 25px; border: 3px solid #000; border-radius: 20px; overflow: hidden;">
-        <div id="bar-1" style="width: 0%; height: 100%; background: #FF8BA7; transition: 0.5s ease-in-out;"></div>
-    </div>
-
-    <button class="btn-main" onclick="openClassModal('Coding Dasar', 1)" style="width: 100%; cursor: pointer;">Lanjut Belajar</button>
+    <h2 id="dashboardTitle" style="font-weight: 950; margin-bottom: 10px;">Daftar Materi</h2>
+    <div id="dynamicClassList"></div> 
 </div>
-    </div>
 </div>
 
 <div id="studyModal">

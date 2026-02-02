@@ -1,16 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="about-hero reveal-on-scroll">
-    <h1 style="font-size: 70px; font-weight: 950;">About Our <span>Platform</span></h1>
-    <p class="sub-heading-google">Mengenal lebih dekat platform EduTech masa depan kami.</p>
+<section class="about-hero-consistent reveal-on-scroll">
+    <h1>ABOUT OUR <span>PLATFORM</span></h1>
+    <p class="sub-heading-about">
+        Mengenal lebih dekat BrightSkill, teman perjalanan digital masa depanmu! ✨
+    </p>
 </section>
 
-<section class="section-padding reveal-on-scroll" style="background: white;">
-    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: 40px; font-weight: 950; margin-bottom: 25px;">Platform Belajar Skill Digital</h2>
-        <p style="font-size: 18px; line-height: 1.8; font-weight: 600; color: #555;">
-            BrightSkill merupakan website simulasi layanan pendidikan digital yang menyediakan kelas online untuk pembelajaran skill digital dasar. Website ini dirancang khusus untuk pemula dengan tampilan yang ceria dan interaktif guna meningkatkan motivasi belajar pengguna.
+<section class="about-content-section reveal-on-scroll" style="padding: 80px 10%;">
+    <div class="floating-narrative-card">
+        <h2 style="font-size: 35px; font-weight: 950; color: var(--pink); margin-bottom: 25px;">Platform Belajar Skill Digital</h2>
+        <p style="font-size: 19px; line-height: 1.8; font-weight: 700; color: #444;">
+            <span class="highlight-text">BrightSkill</span> merupakan website simulasi layanan pendidikan digital yang menyediakan kelas online untuk pembelajaran skill digital dasar. 
+            Website ini dirancang khusus untuk pemula dengan tampilan yang ceria dan interaktif guna meningkatkan motivasi belajar kamu!
         </p>
     </div>
 </section>
@@ -56,7 +59,7 @@
 <section class="section-padding reveal-on-scroll" style="text-align: center; background: var(--bg-page);">
     <h2 style="font-size: 40px; font-weight: 950; margin-bottom: 30px;">Siap mulai perjalanan belajar digitalmu?</h2>
     <div style="display: flex; justify-content: center; gap: 20px;">
-        <a href="{{ url('/classes') }}" class="btn-main">Daftar Kelas Sekarang</a>
+        <a href="{{ url('/register') }}" class="btn-main">Daftar Kelas Sekarang</a>
         <a href="{{ url('/dashboard') }}" class="filter-btn" style="text-decoration: none; padding: 15px 30px;">Lihat Dashboard</a>
     </div>
 </section>

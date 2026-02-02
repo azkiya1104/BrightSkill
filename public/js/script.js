@@ -4,14 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (cursor) {
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            // Gunakan transform alih-alih top/left untuk performa lebih baik
+            cursor.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
             cursor.style.display = 'block';
         });
 
-        document.querySelectorAll('a, button, .stat-card, .btn-main').forEach(item => {
-            item.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
-            item.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        // Pastikan kursor tetap membesar saat hover di dalam modal juga
+        document.querySelectorAll('a, button, .stat-card, .materi-item, input').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.style.width = '50px';
+                cursor.style.height = '50px';
+                cursor.style.backgroundColor = 'var(--pink)';
+            });
+            item.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = 'var(--yellow)';
+            });
         });
     }
 
@@ -160,54 +169,160 @@ function closeGalleryModal() {
 
 console.log("BrightSkill Pro Script Loaded & Error Fixed! 🚀");
 
-let activeId = null; // Variabel global untuk menyimpan ID kelas yang sedang dibuka
+// DATA DUMMY MATERI (6 Kategori tiap Kelas)
+const materiData = {
+    'UI/UX Dasar': ['Research User', 'Wireframing', 'Visual Design', 'Prototyping', 'Usability Testing', 'Final UI Design'],
+    'Coding Dasar': ['HTML Dasar', 'CSS Layouting', 'Javascript Logic', 'DOM Manipulation', 'Git & Github', 'Final Web Project'],
+    'Digital Literacy': ['Internet Safety', 'Data Privacy', 'Cyber Ethics', 'Digital Tools', 'Social Media Wisdom', 'Tech Trends 2026']
+};
 
-function openClassModal(title, id) {
-    activeId = id; // Menyimpan ID (misal: 1) agar syncProgress tahu bar mana yang diupdate
-    const modal = document.getElementById('studyModal');
-    const titleHeader = document.getElementById('modalTitle');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ambil Data dari Registrasi
+    const savedName = localStorage.getItem('userName') || 'Kia';
+    const savedKelas = localStorage.getItem('userKelas') || 'UI/UX Dasar';
 
-    if (modal && titleHeader) {
-        titleHeader.innerText = title;
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    // 2. Pasang Nama
+    const nameLabel = document.getElementById('userName');
+    if(nameLabel) nameLabel.innerText = savedName;
+
+    // 3. Render 6 Materi Otomatis
+    const container = document.getElementById('dynamicClassList');
+    const listMateri = materiData[savedKelas] || materiData['UI/UX Dasar'];
+
+    if(container) {
+        container.innerHTML = ""; // Bersihkan kontainer
+        listMateri.forEach((materi, index) => {
+            const id = index + 1;
+            container.innerHTML += `
+                <div class="class-card-db">
+                    <div>
+                        <h3 style="font-weight: 900; font-size: 20px;">${materi}</h3>
+                        <span id="statusText-${id}" style="font-weight: 800; color: #888; font-size: 13px;">ONGOING</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div id="bar-${id}" class="bar-fill"></div>
+                    </div>
+                    <button class="btn-main" onclick="openClassModal('${materi}', ${id})" style="width: 100%; cursor: pointer;">Lanjut Belajar</button>
+                </div>
+            `;
+        });
     }
+});
+
+let activeId = null;
+function openClassModal(title, id) {
+    activeId = id;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('studyModal').style.display = 'flex';
 }
 
 function syncProgress() {
-    // 1. Ambil semua checkbox di dalam modal
     const checkboxes = document.querySelectorAll('.materi-cb, .materi-check-last');
     const checked = document.querySelectorAll('.materi-cb:checked, .materi-check-last:checked');
     
-    // 2. Hitung persentase
     if (checkboxes.length === 0) return;
     let percent = Math.round((checked.length / checkboxes.length) * 100);
     
-    console.log("Progres Kelas " + activeId + " adalah: " + percent + "%");
-
-    // 3. Update Bar Pink di Halaman Dashboard
     const targetBar = document.getElementById('bar-' + activeId);
     const targetStatus = document.getElementById('statusText-' + activeId);
-    const totalProgressTxt = document.getElementById('totalProgress');
 
-    if (targetBar) {
-        targetBar.style.width = percent + "%"; // Menggerakkan bar pink
-    }
+    if (targetBar) targetBar.style.width = percent + "%";
 
-    if (totalProgressTxt) {
-        totalProgressTxt.innerText = percent + "%"; // Update angka di ringkasan atas
-    }
-
-    // 4. Update Teks Status
     if (targetStatus) {
         if (percent === 100) {
             targetStatus.innerText = "COMPLETED ✅";
             targetStatus.style.color = "#FF8BA7";
-            const finishCount = document.getElementById('finishedCount');
-            if (finishCount) finishCount.innerText = "1";
         } else {
             targetStatus.innerText = "ONGOING (" + percent + "%)";
-            targetStatus.style.color = "#888";
         }
+    }
+    updateOverallProgress();
+}
+
+function updateOverallProgress() {
+    const allBars = document.querySelectorAll('.bar-fill');
+    let totalPercent = 0;
+    let completedClasses = 0;
+
+    allBars.forEach(bar => {
+        // Ambil nilai width dari style (misal "100%") lalu ubah jadi angka 100
+        let currentVal = parseInt(bar.style.width) || 0;
+        totalPercent += currentVal;
+
+        // Jika bar sudah 100%, hitung sebagai kelas yang SELESAI
+        if (currentVal === 100) {
+            completedClasses++;
+        }
+    });
+
+    // 1. Hitung Rata-rata Progress (Total % dibagi jumlah materi)
+    let averageProgress = Math.round(totalPercent / allBars.length);
+    const progressLabel = document.getElementById('totalProgress');
+    if (progressLabel) progressLabel.innerText = averageProgress + "%";
+
+    // 2. Update Angka SELESAI
+    const finishedLabel = document.getElementById('finishedCount');
+    if (finishedLabel) finishedLabel.innerText = completedClasses;
+
+    // 3. Update Angka ONGOING (Total dikurangi yang selesai)
+    const ongoingLabel = document.getElementById('ongoingCount');
+    if (ongoingLabel) {
+        ongoingLabel.innerText = allBars.length - completedClasses;
+    }
+
+    console.log("Stats Updated: " + completedClasses + " Selesai, Average: " + averageProgress + "%");
+}
+
+function validateForm(event) {
+    event.preventDefault(); // Mencegah reload halaman
+
+    // Ambil Data
+    const nama = document.getElementById('regNama');
+    const email = document.getElementById('regEmail');
+    const kelas = document.getElementById('regKelas');
+    const check = document.getElementById('regCheck');
+    const card = document.querySelector('.form-card');
+
+    let isValid = true;
+
+    // Reset Error
+    document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+    card.classList.remove('shake');
+
+    // Cek Nama
+    if (nama.value.trim() === "") {
+        document.getElementById('errorNama').style.display = 'block';
+        isValid = false;
+    }
+
+    // Cek Email sederhana
+    if (!email.value.includes('@')) {
+        document.getElementById('errorEmail').style.display = 'block';
+        isValid = false;
+    }
+
+    // Cek Kelas
+    if (kelas.value === "") {
+        document.getElementById('errorKelas').style.display = 'block';
+        isValid = false;
+    }
+
+    // Cek Checkbox
+    if (!check.checked) {
+        document.getElementById('errorCheck').style.display = 'block';
+        isValid = false;
+    }
+
+    // Eksekusi jika Valid
+    if (isValid) {
+        localStorage.setItem('userName', nama.value);
+        localStorage.setItem('userKelas', kelas.value);
+
+        document.getElementById('displayNama').innerText = nama.value;
+        document.getElementById('displayKelas').innerText = kelas.value;
+        document.getElementById('successModal').style.display = 'flex';
+    } else {
+        // Efek Getar kalau error
+        setTimeout(() => card.classList.add('shake'), 10);
     }
 }

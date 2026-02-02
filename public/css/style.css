@@ -41,10 +41,15 @@ body {
     border-radius: 50%; 
     position: fixed; 
     pointer-events: none;
-    z-index: 10000; 
-    mix-blend-mode: difference;
-    border: 2px solid var(--stroke); 
+    /* NAIKKAN z-index ke angka tertinggi agar di depan modal */
+    z-index: 9999999; 
+    /* MIX-BLEND-MODE OPSIONAL: Jika masih sulit terlihat, hapus baris ini */
+    mix-blend-mode: normal; 
+    border: 3px solid var(--stroke); 
     transition: transform 0.1s ease;
+    /* Pastikan kursor berada tepat di ujung jari */
+    transform: translate(-50%, -50%);
+    display: none; /* Sembunyi awal agar tidak muncul di pojok kiri atas */
 }
 
 @keyframes fadeInUp {
@@ -1325,10 +1330,83 @@ footer {
    13. ABOUT PAGE: PROFILE & VISION
    ======================================== */
 
-.about-hero {
-    padding: 120px 10% 80px;
-    background: var(--bg-page);
+.about-hero-consistent {
+    background-color: var(--yellow) !important;
+    padding: 100px 10% 120px;
     text-align: center;
+    border-bottom: 5px solid var(--stroke);
+}
+
+.about-hero-consistent h1 {
+    font-size: 85px; /* Disamakan dengan Event Gallery */
+    font-weight: 950;
+    line-height: 1;
+    color: var(--navy);
+}
+
+.about-hero-consistent h1 span {
+    background: white; 
+    border: 5px solid var(--stroke); 
+    padding: 0 15px; 
+    display: inline-block; 
+    transform: rotate(-2deg); 
+    box-shadow: 8px 8px 0 var(--navy);
+    color: var(--navy); /* Menghilangkan stroke agar bersih */
+}
+
+.sub-heading-about {
+    font-weight: 800; 
+    color: var(--navy); 
+    margin-top: 25px; 
+    font-size: 18px;
+}
+
+/* Section 2: Content dengan Floating Card */
+.about-content-section {
+    padding: 100px 10%;
+    background: var(--white);
+    margin-top: -60px; /* Membuat konten menumpuk sedikit ke hero */
+    position: relative;
+    z-index: 10;
+}
+
+.floating-narrative-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 5px solid var(--stroke);
+    border-radius: 50px;
+    padding: 60px 50px;
+    text-align: center;
+    box-shadow: 20px 20px 0px var(--navy);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-narrative-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 25px 25px 0px var(--pink);
+}
+
+.floating-narrative-card h2 {
+    font-size: 45px;
+    font-weight: 950;
+    color: var(--pink);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.floating-narrative-card p {
+    font-size: 20px;
+    line-height: 1.8;
+    font-weight: 700;
+    color: #444;
+}
+
+.highlight-text {
+    color: var(--navy);
+    background: linear-gradient(120deg, rgba(255, 139, 167, 0.2) 0%, rgba(255, 139, 167, 0.2) 100%);
+    padding: 2px 8px;
+    border-radius: 5px;
 }
 
 /* Vision & Mission Cards */
@@ -1403,4 +1481,75 @@ footer {
     font-weight: 800;
     font-size: 12px;
     margin-top: 10px;
+}
+
+/* ========================================
+   16. REGISTER FORM: INTERACTIVE VALIDATION
+   ======================================== */
+
+.register-wrapper {
+    padding: 100px 10%;
+    background: #fdfbf7;
+    display: flex;
+    justify-content: center;
+}
+
+.form-card {
+    background: white;
+    border: 5px solid var(--stroke);
+    border-radius: 50px;
+    padding: 60px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 20px 20px 0px var(--navy);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 900;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 25px;
+    border: 3px solid var(--stroke);
+    border-radius: 20px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--pink);
+    box-shadow: 5px 5px 0px var(--pink);
+}
+
+/* Error Message Style */
+.error-msg {
+    color: #ff4d4d;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 5px;
+    display: none; /* Sembunyi awal */
+}
+
+/* Animasi Shake jika Error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
 }
