@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/classes') }}">Classes</a></li>
-                <li><a href="{{ url('/gallery') }}">Gallery</a></li>
+                <li><a href="{{ url('/gallery') }}">Event</a></li>
                 <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url('/about') }}">About</a></li>
             </ul>
